@@ -1,21 +1,27 @@
-
 version: 2
 
 models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+  - name: my_first_dbt_model
+    description: "Selects customer details from Snowflake sample data"
+    columns:
+      - name: c_customer_id
+        description: "Unique identifier for the customer"
+        tests:
+          - unique
+          - not_null
+      - name: c_first_name
+        description: "Customer's first name"
+      - name: c_last_name
+        description: "Customer's last name"
+      - name: c_current_addr_sk
+        description: "Current address surrogate key"
+      - name: c_preferred_cust_flag
+        description: "Flag indicating if the customer is preferred"
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+  - name: my_second_dbt_model
+    description: "Aggregates customer count by preferred customer flag"
+    columns:
+      - name: customer_count
+        description: "Count of customers"
+      - name: c_preferred_cust_flag
+        description: "Flag indicating if the customer is preferred"

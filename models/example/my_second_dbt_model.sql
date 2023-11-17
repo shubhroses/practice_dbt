@@ -1,6 +1,8 @@
+{{ config(materialized='table') }}
 
--- Use the `ref` function to select from other models
 
-select *
-from {{ ref('my_first_dbt_model') }}
-where id = 1
+SELECT
+    COUNT(*) as customer_count,
+    c_preferred_cust_flag
+FROM {{ ref('my_first_dbt_model') }}
+GROUP BY c_preferred_cust_flag
