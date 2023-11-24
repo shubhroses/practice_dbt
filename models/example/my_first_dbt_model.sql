@@ -1,27 +1,14 @@
-
-/*
-    Welcome to your first dbt model!
-    Did you know that you can also configure models directly within SQL files?
-    This will override configurations stated in dbt_project.yml
-
-    Try changing "table" to "view" below
-*/
-
 {{ config(materialized='table') }}
 
-with source_data as (
-
-    select 1 as id
-    union all
-    select null as id
-
+WITH source_data AS (
+    SELECT c_customer_id,
+           c_first_name,
+           c_last_name,
+           c_current_addr_sk,
+           c_preferred_cust_flag
+    FROM "SNOWFLAKE_SAMPLE_DATA"."TPCDS_SF100TCL"."CUSTOMER"
+    WHERE c_current_cdemo_sk = 10
 )
 
-select *
-from source_data
-
-/*
-    Uncomment the line below to remove records with null `id` values
-*/
-
--- where id is not null
+SELECT *
+FROM source_data
