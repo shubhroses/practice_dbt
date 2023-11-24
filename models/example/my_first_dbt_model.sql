@@ -8,6 +8,7 @@ WITH source_data AS (
            c_preferred_cust_flag
     FROM "SNOWFLAKE_SAMPLE_DATA"."TPCDS_SF100TCL"."CUSTOMER"
     WHERE c_current_cdemo_sk = 10
+    and c_first_name = 'Alice'
 )
 
 SELECT *
